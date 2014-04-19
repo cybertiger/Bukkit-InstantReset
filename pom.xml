@@ -44,6 +44,15 @@
                   <include>org.cyberiantiger.minecraft:*</include>
                 </includes>
               </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>org.cyberiantiger.minecraft</pattern>
+                  <shadedPattern>org.cyberiantiger.minecraft.instantreset.libnbt</shadedPattern>
+                  <excludes>
+                    <exclude>org.cyberiantiger.minecraft.instantreset.*</exclude>
+                  </excludes>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>
