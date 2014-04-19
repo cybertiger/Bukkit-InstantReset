@@ -35,7 +35,7 @@ class ResetSubCommand implements SubCommand {
         } else {
             throw new CommandUsageException();
         }
-        InstantResetWorld instantResetWorld = plugin.getInstantResetWorld(args[0]);
+        InstantResetWorld instantResetWorld = plugin.getInstantResetWorld(worldName);
         if (instantResetWorld == null) {
             throw new CommandException(worldName + " is not an instant reset world.");
         }
