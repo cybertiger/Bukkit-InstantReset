@@ -6,8 +6,9 @@ website: "http://dev.bukkit.org/server-mods/instantreset/"
 # do not know how to do it.
 loadbefore:
         - MultiWorld
-        - Multiverse-Core
         - NWorld
+softdepend:
+        - Multiverse-Core
 commands:
   ir:
     description: Reset a world, instantly.
