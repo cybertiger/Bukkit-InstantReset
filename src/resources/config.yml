@@ -1,0 +1,39 @@
+# Where to look for world templates.
+templatedir: templates 
+# Where to store temporary files for instantreset worlds.
+worlddir: worlds
+# List of resetable worlds
+#
+# Note: they will not load if they are invalid, and messages as
+# to why the did not load will be printed to the console.
+#
+# The environment must match the world save or you will end up
+# with an empty world.
+#
+# You cannot (yet) use this plugin to reset the default worlds in 
+# CraftBukkit, as the unload API prevents them from being unloaded.
+worlds:
+        # Name of world.
+        ir:
+                # Name of directory containing the world save.
+                template: "ir"
+                # Environment, one of NORMAL, NETHER, THE_END
+                environment: NORMAL
+                # Difficulty, one of EASY, NORMAL, HARD, PEACEFUL
+                difficulty: NORMAL
+        # Name of world.
+        ir_nether:
+                # Name of directory containing the world save.
+                template: "ir_nether"
+                # Environment, one of NORMAL, NETHER, THE_END
+                environment: NETHER
+                # Difficulty, one of EASY, NORMAL, HARD, PEACEFUL
+                difficulty: NORMAL
+        # Name of world.
+        ir_the_end:
+                # Name of directory containing the world save.
+                template: "ir_the_end"
+                # Environment, one of NORMAL, NETHER, THE_END
+                environment: THE_END
+                # Difficulty, one of EASY, NORMAL, HARD, PEACEFUL
+                difficulty: NORMAL

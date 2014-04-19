@@ -1,0 +1,20 @@
+name: "InstantReset"
+version: "${version}"
+main: "org.cyberiantiger.minecraft.instantreset.InstantReset"
+website: "http://dev.bukkit.org/server-mods/instantreset/"
+# Load before world managers, so we load our worlds first, as they 
+# do not know how to do it.
+loadbefore:
+        - MultiWorld
+        - Multiverse-Core
+        - NWorld
+commands:
+  ir:
+    description: Reset a world, instantly.
+    usage: |
+        /<command> list 
+        /<command> reset [world]
+    permission: instantreset
+    aliases:
+            - irreset
+            - irlist
