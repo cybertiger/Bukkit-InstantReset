@@ -71,7 +71,13 @@ public class FilePurgeTask extends BukkitRunnable {
     }
 
     public synchronized void start() {
-        cancel();
+        // You'd think there was a way to find out if we're actually currently scheduled.
+        // but no, that shit's too complicated for us plugin devs.
+        try {
+            cancel();
+        } catch (IllegalStateException e) {
+            // srsly bukkit.
+        }
         runTaskTimerAsynchronously(plugin, PURGE_INTERVAL, PURGE_INTERVAL);
     }
 
