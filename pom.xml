@@ -75,6 +75,11 @@
       <id>cyberiantiger.repo</id>
       <url>http://cyberiantiger.org/maven/</url>
     </repository>
+    <!-- Multiverse-Core and Multiverse-Inventories -->
+    <repository>
+      <id>onarandombox</id>
+      <url>http://repo.onarandombox.com/content/groups/public</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
