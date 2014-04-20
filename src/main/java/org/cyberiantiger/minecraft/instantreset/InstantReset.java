@@ -36,6 +36,7 @@ public class InstantReset extends JavaPlugin {
     private File worldDir;
     private final Map<String, InstantResetWorld> worlds = new HashMap<String, InstantResetWorld>();
     private final List<Hooks> hooks = new ArrayList<Hooks>();
+    private final FilePurgeTask filePurger = new FilePurgeTask(this);
 
     private InstanceTools tools = null;
 
@@ -99,6 +100,7 @@ public class InstantReset extends JavaPlugin {
                 }
             }
         }
+        filePurger.start();
     }
 
     @Override
@@ -213,6 +215,8 @@ public class InstantReset extends JavaPlugin {
         for (Player player : players.keySet()) {
             player.teleport(bukkitWorld.getSpawnLocation());
         }
+        filePurger.cancel();
+        filePurger.runTaskLaterAsynchronously(this, FilePurgeTask.PURGE_INTERVAL);
     }
 
     public InstantResetWorld getInstantResetWorld(String name) {
