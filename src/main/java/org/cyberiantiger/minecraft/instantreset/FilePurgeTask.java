@@ -82,6 +82,9 @@ public class FilePurgeTask extends BukkitRunnable {
     }
 
     public synchronized void stop() {
-        cancel();
+        try {
+            cancel();
+        } catch (IllegalStateException e) {
+        }
     }
 }
