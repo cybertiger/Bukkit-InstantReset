@@ -8,14 +8,14 @@ package org.cyberiantiger.minecraft.instantreset;
  *
  * @author antony
  */
-public interface Hooks {
+interface Hooks {
 
-    public void preUnload(InstantResetWorld world);
+    void preUnload(InstantResetWorld world);
 
-    public void postUnload(InstantResetWorld world);
+    void postUnload(InstantResetWorld world);
 
-    public void preLoad(InstantResetWorld world);
+    void preLoad(InstantResetWorld world);
 
-    public void postLoad(InstantResetWorld world);
+    void postLoad(InstantResetWorld world);
     
 }

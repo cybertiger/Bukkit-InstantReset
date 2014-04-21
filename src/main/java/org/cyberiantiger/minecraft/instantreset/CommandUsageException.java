@@ -8,7 +8,7 @@ package org.cyberiantiger.minecraft.instantreset;
  *
  * @author antony
  */
-public class CommandUsageException extends CommandException {
+class CommandUsageException extends CommandException {
 
     public CommandUsageException() {
     }

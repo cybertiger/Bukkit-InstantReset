@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author antony
  */
-public interface SubCommand {
+interface SubCommand {
 
     public void onCommand(CommandSender sender, String... args) throws CommandException;
     

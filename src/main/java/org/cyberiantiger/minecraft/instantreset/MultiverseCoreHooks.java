@@ -11,7 +11,7 @@ import org.bukkit.World;
  *
  * @author antony
  */
-public class MultiverseCoreHooks implements Hooks {
+class MultiverseCoreHooks implements Hooks {
     private InstantReset plugin;
 
     private MultiverseCore getMultiverseCore() {

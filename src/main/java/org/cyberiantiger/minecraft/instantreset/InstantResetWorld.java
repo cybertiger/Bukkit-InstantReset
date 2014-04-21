@@ -50,7 +50,7 @@ public class InstantResetWorld {
         return new File(plugin.getTemplateDir(), template);
     }
 
-    public void setWorldSave(String worldSave) {
+    void setWorldSave(String worldSave) {
         this.worldSave = worldSave;
     }
 
@@ -62,7 +62,7 @@ public class InstantResetWorld {
         return new File(plugin.getWorldDir(), getWorldSave());
     }
 
-    public void createWorldSave() {
+    void createWorldSave() {
         try {
             File tmpFile = File.createTempFile(getName() + ".", ".world",plugin.getWorldDir());
             if (!tmpFile.delete()) throw new IOException("Could not delete file: " + tmpFile);

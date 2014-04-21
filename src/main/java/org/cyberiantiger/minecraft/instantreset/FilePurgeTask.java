@@ -16,7 +16,7 @@ import org.cyberiantiger.minecraft.util.FileUtils;
  *
  * @author antony
  */
-public class FilePurgeTask extends BukkitRunnable {
+class FilePurgeTask extends BukkitRunnable {
     // Maybe not hardcode this.
     public static final long PURGE_INTERVAL = 20 * 60; // 60 seconds.
 

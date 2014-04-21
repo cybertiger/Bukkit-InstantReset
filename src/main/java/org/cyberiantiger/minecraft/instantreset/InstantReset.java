@@ -6,6 +6,7 @@ package org.cyberiantiger.minecraft.instantreset;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,7 +147,7 @@ public class InstantReset extends JavaPlugin {
         }
     }
 
-    protected World loadWorld(InstantResetWorld world) {
+    private World loadWorld(InstantResetWorld world) {
         for (Hooks hook : hooks) {
             try {
                 hook.preLoad(world);
@@ -166,7 +167,7 @@ public class InstantReset extends JavaPlugin {
         return result;
     }
     
-    protected Map<Player, Location> unloadWorld(InstantResetWorld world, boolean save) {
+    private Map<Player, Location> unloadWorld(InstantResetWorld world, boolean save) {
         Map<Player, Location> players = new HashMap<Player, Location>();
         World bukkitWorld = getServer().getWorld(world.getName());
         if (bukkitWorld != null) {
@@ -224,7 +225,7 @@ public class InstantReset extends JavaPlugin {
     }
 
     public Set<String> getInstantResetWorldNames() {
-        return worlds.keySet();
+        return Collections.unmodifiableSet(worlds.keySet());
     }
 
     public File getTemplateDir() {
