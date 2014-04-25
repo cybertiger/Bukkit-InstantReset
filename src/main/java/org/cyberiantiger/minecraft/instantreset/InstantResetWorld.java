@@ -59,7 +59,10 @@ public class InstantResetWorld {
     }
 
     public File getWorldSaveDir() {
-        return new File(plugin.getWorldDir(), getWorldSave());
+        if (getWorldSave() == null)
+            return null;
+        else
+            return new File(plugin.getWorldDir(), getWorldSave());
     }
 
     void createWorldSave() {

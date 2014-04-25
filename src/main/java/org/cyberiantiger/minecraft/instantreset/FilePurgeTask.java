@@ -34,10 +34,14 @@ class FilePurgeTask extends BukkitRunnable {
         for (String world : plugin.getInstantResetWorldNames()) {
             // Try to use a canonical file to prevent some idiot 
             // from deleting all their shit by accident.
-            try {
-                worldSaves.add(plugin.getInstantResetWorld(world).getWorldSaveDir().getCanonicalFile());
-            } catch (IOException ex) {
-                worldSaves.add(plugin.getInstantResetWorld(world).getWorldSaveDir().getAbsoluteFile());
+            InstantResetWorld instantResetWorld = plugin.getInstantResetWorld(world);
+            File worldSaveDir = instantResetWorld.getWorldSaveDir();
+            if (worldSaveDir != null) {
+                try {
+                    worldSaves.add(worldSaveDir.getCanonicalFile());
+                } catch (IOException ex) {
+                    worldSaves.add(worldSaveDir.getAbsoluteFile());
+                }
             }
         }
         // Files under worldSave should be regular directories.
