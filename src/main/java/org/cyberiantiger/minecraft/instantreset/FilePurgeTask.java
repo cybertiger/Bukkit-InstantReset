@@ -53,19 +53,22 @@ class FilePurgeTask extends BukkitRunnable {
             parentDir = parentDir.getAbsoluteFile();
         }
         boolean success = true;
-        for (File file : parentDir.listFiles()) {
-            if (worldSaves.contains(file)) {
-                plugin.getLogger().log(Level.INFO, "Skipping active world save dir: {0}", file);
-            } else if (file.isDirectory()) {
-                try {
-                    if (!FileUtils.deleteRecursively(file)) {
-                        plugin.getLogger().log(Level.WARNING, "Failed to fully delete unused world save: {0}", file);
-                        success = false;
-                    } else {
-                        plugin.getLogger().log(Level.INFO, "Deleted unused world save directory: {0}", file);
+        File[] files = parentDir.listFiles();
+        if (files != null) {
+            for (File file : parentDir.listFiles()) {
+                if (worldSaves.contains(file)) {
+                    plugin.getLogger().log(Level.INFO, "Skipping active world save dir: {0}", file);
+                } else if (file.isDirectory()) {
+                    try {
+                        if (!FileUtils.deleteRecursively(file)) {
+                            plugin.getLogger().log(Level.WARNING, "Failed to fully delete unused world save: {0}", file);
+                            success = false;
+                        } else {
+                            plugin.getLogger().log(Level.INFO, "Deleted unused world save directory: {0}", file);
+                        }
+                    }  catch (IOException ioe) {
+                        // Never thrown, will be removed from method declaration in next release.
                     }
-                }  catch (IOException ioe) {
-                    // Never thrown, will be removed from method declaration in next release.
                 }
             }
         }
