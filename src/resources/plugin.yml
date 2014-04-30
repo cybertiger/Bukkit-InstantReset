@@ -1,5 +1,5 @@
 name: "InstantReset"
-version: "${version}"
+version: "${version}-${project.build.number}"
 main: "org.cyberiantiger.minecraft.instantreset.InstantReset"
 website: "http://dev.bukkit.org/server-mods/instantreset/"
 # Load before world managers, so we load our worlds first, as they 
