@@ -35,6 +35,7 @@ public class InstantReset extends JavaPlugin {
 
     private File templateDir;
     private File worldDir;
+    private boolean resetOnRestart;
     private final Map<String, InstantResetWorld> worlds = new HashMap<String, InstantResetWorld>();
     private final List<Hooks> hooks = new ArrayList<Hooks>();
     private final FilePurgeTask filePurger = new FilePurgeTask(this);
@@ -68,6 +69,7 @@ public class InstantReset extends JavaPlugin {
 
         templateDir = new File(getDataFolder(), config.getString("templatedir"));
         worldDir = new File(getDataFolder(), config.getString("worlddir"));
+        resetOnRestart = config.getBoolean("resetOnRestart", false);
 
         templateDir.mkdirs();
         worldDir.mkdirs();
@@ -91,7 +93,7 @@ public class InstantReset extends JavaPlugin {
                     env = World.Environment.NORMAL;
                 }
                 InstantResetWorld theWorld =
-                        new InstantResetWorld(this, key, env, difficulty, world.getString("template"), world.getString("worldsave"));
+                        new InstantResetWorld(this, key, env, difficulty, world.getString("template"), resetOnRestart ? null : world.getString("worldsave"));
                 this.worlds.put(key, theWorld);
                 try {
                     theWorld.checkValid();

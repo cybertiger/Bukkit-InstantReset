@@ -2,6 +2,8 @@
 templatedir: templates 
 # Where to store temporary files for instantreset worlds.
 worlddir: worlds
+# Reset worlds on restart
+resetOnRestart: false
 # List of resetable worlds
 #
 # Note: they will not load if they are invalid, and messages as
