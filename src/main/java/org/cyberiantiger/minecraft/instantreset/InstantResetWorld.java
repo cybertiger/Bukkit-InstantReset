@@ -95,16 +95,16 @@ public class InstantResetWorld {
         }
         File worldSaveDir = getWorldSaveDir();
         if (!worldSaveDir.exists()) {
-            throw new IllegalStateException("World save dir: " + templateDir + " for world: " + getName() + " does not exist");
+            throw new IllegalStateException("World save dir: " + worldSaveDir + " for world: " + getName() + " does not exist");
         }
         if (!worldSaveDir.isDirectory()) {
-            throw new IllegalStateException("World save dir: " + templateDir + " for world: " + getName() + " is not a directory");
+            throw new IllegalStateException("World save dir: " + worldSaveDir + " for world: " + getName() + " is not a directory");
         }
         if (!worldSaveDir.canRead()) {
-            throw new IllegalStateException("World save dir: " + templateDir + " for world: " + getName() + " cannot be read");
+            throw new IllegalStateException("World save dir: " + worldSaveDir + " for world: " + getName() + " cannot be read");
         }
         if (!worldSaveDir.canWrite()) {
-            throw new IllegalStateException("World save dir: " + templateDir + " for world: " + getName() + " cannot be written to");
+            throw new IllegalStateException("World save dir: " + worldSaveDir + " for world: " + getName() + " cannot be written to");
         }
     }
 }
