@@ -218,8 +218,7 @@ public class InstantReset extends JavaPlugin {
         for (Player player : players.keySet()) {
             player.teleport(bukkitWorld.getSpawnLocation());
         }
-        filePurger.cancel();
-        filePurger.runTaskLaterAsynchronously(this, FilePurgeTask.PURGE_INTERVAL);
+        filePurger.start();
     }
 
     public InstantResetWorld getInstantResetWorld(String name) {

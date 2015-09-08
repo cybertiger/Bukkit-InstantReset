@@ -16,11 +16,12 @@ import org.cyberiantiger.minecraft.util.FileUtils;
  *
  * @author antony
  */
-class FilePurgeTask extends BukkitRunnable {
+class FilePurgeTask implements Runnable {
     // Maybe not hardcode this.
     public static final long PURGE_INTERVAL = 20 * 60; // 60 seconds.
 
     private final InstantReset plugin;
+    private int taskId = -1;
 
     public FilePurgeTask(InstantReset plugin) {
         this.plugin = plugin;
@@ -73,21 +74,19 @@ class FilePurgeTask extends BukkitRunnable {
         }
     }
 
-    public synchronized void start() {
-        // You'd think there was a way to find out if we're actually currently scheduled.
-        // but no, that shit's too complicated for us plugin devs.
-        try {
-            cancel();
-        } catch (IllegalStateException e) {
-            // srsly bukkit.
+    private void cancel() {
+        if (taskId != -1) {
+            plugin.getServer().getScheduler().cancelTask(taskId);
+            taskId = -1;
         }
-        runTaskTimerAsynchronously(plugin, PURGE_INTERVAL, PURGE_INTERVAL);
+    }
+
+    public synchronized void start() {
+        cancel();
+        taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this, PURGE_INTERVAL, PURGE_INTERVAL);
     }
 
     public synchronized void stop() {
-        try {
-            cancel();
-        } catch (IllegalStateException e) {
-        }
+        cancel();
     }
 }
