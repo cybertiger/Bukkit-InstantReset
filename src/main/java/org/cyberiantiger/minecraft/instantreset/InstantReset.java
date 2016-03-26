@@ -215,8 +215,14 @@ public class InstantReset extends JavaPlugin {
         Map<Player, Location> players = unloadWorld(world, false);
         world.createWorldSave();
         World bukkitWorld = loadWorld(world);
-        for (Player player : players.keySet()) {
-            player.teleport(bukkitWorld.getSpawnLocation());
+        for (Map.Entry<Player, Location> entry : players.entrySet()) {
+
+            Location lastLoc = entry.getValue();
+
+            Location loc = new Location(bukkitWorld, lastLoc.getX(), lastLoc.getY(), lastLoc.getZ(), lastLoc.getYaw(), lastLoc.getPitch());
+
+            entry.getKey().teleport(loc);
+
         }
         filePurger.start();
     }
