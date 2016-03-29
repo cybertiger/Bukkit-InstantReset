@@ -36,6 +36,7 @@ public class InstantReset extends JavaPlugin {
     private File templateDir;
     private File worldDir;
     private boolean resetOnRestart;
+    private boolean maintainPlayerLocation;
     private final Map<String, InstantResetWorld> worlds = new HashMap<String, InstantResetWorld>();
     private final List<Hooks> hooks = new ArrayList<Hooks>();
     private final FilePurgeTask filePurger = new FilePurgeTask(this);
@@ -70,6 +71,7 @@ public class InstantReset extends JavaPlugin {
         templateDir = new File(getDataFolder(), config.getString("templatedir"));
         worldDir = new File(getDataFolder(), config.getString("worlddir"));
         resetOnRestart = config.getBoolean("resetOnRestart", false);
+        maintainPlayerLocation = config.getBoolean("maintainPlayerLocation", false);
 
         templateDir.mkdirs();
         worldDir.mkdirs();
@@ -215,15 +217,17 @@ public class InstantReset extends JavaPlugin {
         Map<Player, Location> players = unloadWorld(world, false);
         world.createWorldSave();
         World bukkitWorld = loadWorld(world);
-        for (Map.Entry<Player, Location> entry : players.entrySet()) {
 
-            Location lastLoc = entry.getValue();
+        if (maintainPlayerLocation)
+            for (Map.Entry<Player, Location> entry : players.entrySet()) {
+                Location lastLoc = entry.getValue();
+                Location loc = new Location(bukkitWorld, lastLoc.getX(), lastLoc.getY(), lastLoc.getZ(), lastLoc.getYaw(), lastLoc.getPitch());
+                entry.getKey().teleport(loc);
+            }
+        else
+            for (Player player : players.keySet())
+                player.teleport(bukkitWorld.getSpawnLocation());
 
-            Location loc = new Location(bukkitWorld, lastLoc.getX(), lastLoc.getY(), lastLoc.getZ(), lastLoc.getYaw(), lastLoc.getPitch());
-
-            entry.getKey().teleport(loc);
-
-        }
         filePurger.start();
     }
 

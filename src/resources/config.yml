@@ -4,6 +4,8 @@ templatedir: templates
 worlddir: worlds
 # Reset worlds on restart
 resetOnRestart: false
+# Maintain Players Location on world reset
+maintainPlayerLocation: false
 # List of resetable worlds
 #
 # Note: they will not load if they are invalid, and messages as
