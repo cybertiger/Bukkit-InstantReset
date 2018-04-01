@@ -7,6 +7,7 @@ website: "http://dev.bukkit.org/server-mods/instantreset/"
 loadbefore:
         - MultiWorld
         - NWorld
+        - Multiverse-Portals
 softdepend:
         - Multiverse-Core
 commands:

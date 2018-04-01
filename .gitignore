@@ -22,3 +22,6 @@ site/javadoc/*
 target/*
 
 dependency-reduced-pom.xml
+
+.idea
+*.iml
